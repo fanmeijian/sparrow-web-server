@@ -7,6 +7,7 @@ export const environment = {
   orgApiBase: 'http://localhost:8080',
   ruleApiBase: 'http://localhost:8070/rule-service',
   keycloakUrl: 'https://keycloak.sportunione.cn',
+  formApiBase: 'http://localhost:4421/sparrow-form-service',
   realm: 'liyun-dev',
 };
 

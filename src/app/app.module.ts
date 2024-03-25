@@ -24,6 +24,11 @@ import {
   BASE_PATH as RuleApi_BASE_PATH,
 } from '@sparrowmini/rule-api';
 
+import {
+  ApiModule as FormApiModule,
+  BASE_PATH as FormApi_BASE_PATH,
+} from '@sparrowmini/form-api';
+
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -32,7 +37,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
       config: {
         url: environment.keycloakUrl,
         realm: environment.realm,
-        clientId: 'sparrow-web-form',
+        clientId: 'sparrow-web-server',
       },
       initOptions: {
         onLoad: 'login-required',
@@ -57,10 +62,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
     // SparrowTestLibModule,
     SparrowRuleModule,
     RuleApiModule,
+    FormApiModule,
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
     { provide: RuleApi_BASE_PATH, useValue: environment.ruleApiBase },
+    { provide: FormApi_BASE_PATH, useValue: environment.formApiBase },
+
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormCreateComponent, FormDataCreateComponent, FormDataListComponent, FormListComponent, SparrowFormComponent } from '@sparrowmini/sparrow-form';
 import {
   SparrowOrgComponent,
   OrgsComponent,
@@ -95,6 +96,33 @@ const routes: Routes = [
         path: 'rule-create',
         data: { title: '新建规则' },
         component: RuleCreateComponent,
+      },
+    ],
+  },
+  {
+    path: 'form',
+    data: { title: '表单管理' },
+    component: SparrowFormComponent,
+    children: [
+      {
+        path: 'form-datas',
+        data: { title: '数据' },
+        component: FormDataListComponent,
+      },
+      {
+        path: 'sparrow-forms',
+        data: { title: '设计' },
+        component: FormListComponent,
+      },
+      {
+        path: 'sparrow-form-create',
+        data: { title: '设计表单' },
+        component: FormCreateComponent,
+      },
+      {
+        path: 'form-data-create',
+        data: { title: '表单数据' },
+        component: FormDataCreateComponent,
       },
     ],
   },
