@@ -1,0 +1,60 @@
+<mat-toolbar color="primary" style="height: 60px">
+  <button
+    mat-icon-button
+    (click)="drawer.toggle()"
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>流程管理</span>
+  <span class="example-spacer"></span>
+
+  <div style="text-align: right">
+    <a
+      [matMenuTriggerFor]="menu1"
+      mat-icon-button
+      style="font-size: 14px; cursor: pointer; padding: 0px"
+    >
+      <!-- {{ curUser?.username }}
+      <img class="avatar" src="{{ curUser?.attributes?.avatar[0] }}" /> -->
+    </a>
+    <mat-menu #menu1="matMenu">
+      <!-- <button mat-menu-item (click)="logout()" color="accent">注销</button> -->
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container
+  class="example-container"
+  [hasBackdrop]="false"
+  style="height: calc(100vh - 60px)"
+>
+  <mat-drawer #drawer mode="side" opened class="left">
+    <lib-menu-tree></lib-menu-tree>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div
+      style="
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+      "
+    >
+      <spr-sparrow-breadcrumb></spr-sparrow-breadcrumb>
+    </div>
+    <!-- <canvas id="stage" #stage></canvas> -->
+    <div
+      style="
+        padding: 10px;
+        width: calc(100% - 20px);
+        height: calc(100vh - 130px);
+      "
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

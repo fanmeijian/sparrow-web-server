@@ -1,0 +1,73 @@
+.left{
+  width: 200px;
+  /* height: 100%; */
+}
+.example-container{
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+#stage {
+  position: absolute;
+  width: 800px;
+  height: 700px;
+  border: 1px red solid;
+  top: 100px;
+  left: 100px;
+}
+/* .person-run {
+  position: absolute;
+  width: 92px;
+  height: 163px;
+  background-image: url("./run.png");
+  animation: run 1s steps(8) infinite;
+  border: 1px red solid;
+}
+@keyframes run {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -736px 0;
+  }
+} */
+.render-dom {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background: pink;
+  left: 10px;
+  top: 10px;
+}
+.render-dom p {
+  font-size: 14px;
+  color: blue;
+  line-height: 14px;
+  font-family: cursive;
+}
+.render-dom .icon {
+  width: 20px;
+  height: 20px;
+}
+.render-dom .btn {
+  color: #fff;
+  border: 0;
+  font-size: 14px;
+  font-family: cursive;
+  background: green;
+}
+
+:host ::ng-deep {
+  #mxgraph-diagram-container {
+    .geDialog {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      table {
+        left : unset !important;
+      }
+    }
+  }
+}
