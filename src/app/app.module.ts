@@ -37,6 +37,7 @@ import {
   ApiModule as UserApiModule,
   BASE_PATH as UserApi_BASE_PATH,
 } from '@sparrowmini/sparrow-keycloak-admin-api';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
@@ -81,6 +82,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     { provide: FormApi_BASE_PATH, useValue: environment.formApiBase },
     { provide: JbpmApi_BASE_PATH, useValue: environment.bpmApiBase },
     { provide: UserApi_BASE_PATH, useValue: environment.userServiceApi },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
