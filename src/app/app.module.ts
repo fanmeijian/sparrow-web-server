@@ -28,6 +28,15 @@ import {
   ApiModule as FormApiModule,
   BASE_PATH as FormApi_BASE_PATH,
 } from '@sparrowmini/form-api';
+import {
+  ApiModule as JbpmApiModule,
+  BASE_PATH as JbpmApi_BASE_PATH,
+} from '@sparrowmini/jbpm-api';
+
+import {
+  ApiModule as UserApiModule,
+  BASE_PATH as UserApi_BASE_PATH,
+} from '@sparrowmini/sparrow-keycloak-admin-api';
 
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
@@ -63,12 +72,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     SparrowRuleModule,
     RuleApiModule,
     FormApiModule,
+    JbpmApiModule,
+    UserApiModule,
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
     { provide: RuleApi_BASE_PATH, useValue: environment.ruleApiBase },
     { provide: FormApi_BASE_PATH, useValue: environment.formApiBase },
-
+    { provide: JbpmApi_BASE_PATH, useValue: environment.bpmApiBase },
+    { provide: UserApi_BASE_PATH, useValue: environment.userServiceApi },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

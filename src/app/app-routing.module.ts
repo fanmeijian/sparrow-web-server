@@ -1,6 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormCreateComponent, FormDataCreateComponent, FormDataListComponent, FormListComponent, SparrowFormComponent } from '@sparrowmini/sparrow-form';
+import {
+  FormDesignComponent,
+  ProcessDefinitionsComponent,
+  ProcessInstacesComponent,
+  SparrowBpmComponent,
+  TaskInstancesComponent,
+  ProcessFormComponent,
+} from '@sparrowmini/sparrow-bpm';
+import {
+  FormCreateComponent,
+  FormDataCreateComponent,
+  FormDataListComponent,
+  FormListComponent,
+  MyFormDataListComponent,
+  MyFormListComponent,
+  SparrowFormComponent,
+  FormDataViewComponent,
+} from '@sparrowmini/sparrow-form';
 import {
   SparrowOrgComponent,
   OrgsComponent,
@@ -16,9 +33,12 @@ import {
   ScopesComponent,
   SprmodesComponent,
   PemgroupsComponent,
-  DataPermissionsComponent
+  DataPermissionsComponent,
 } from '@sparrowmini/sparrow-permission';
-import { RuleCreateComponent, RuleTemplatesComponent } from '@sparrowmini/sparrow-rule';
+import {
+  RuleCreateComponent,
+  RuleTemplatesComponent,
+} from '@sparrowmini/sparrow-rule';
 
 const routes: Routes = [
   {
@@ -54,6 +74,19 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'builder', component: FormDesignComponent },
+  { path: 'my-forms', component: MyFormListComponent },
+  { path: 'my-form-datas', component: MyFormDataListComponent },
+  {
+    path: 'form-data-view',
+    data: { title: '查看数据' },
+    component: FormDataViewComponent,
+  },
+  {
+    path: 'form-data-create',
+    data: { title: '填写数据' },
+    component: FormDataCreateComponent,
+  },
   {
     path: 'organization',
     data: { title: '组织管理' },
@@ -79,6 +112,28 @@ const routes: Routes = [
         path: 'employees',
         component: EmployeesComponent,
         data: { title: '员工列表' },
+      },
+    ],
+  },
+  {
+    path: 'flow',
+    data: { title: '流程管理' },
+    component: SparrowBpmComponent,
+    children: [
+      {
+        path: 'flowlist',
+        data: { title: '流程列表' },
+        component: ProcessDefinitionsComponent,
+      },
+      {
+        path: 'flow-instances',
+        data: { title: '流程实例' },
+        component: ProcessInstacesComponent,
+      },
+      {
+        path: 'tasks',
+        data: { title: '任务列表' },
+        component: TaskInstancesComponent,
       },
     ],
   },
@@ -123,6 +178,11 @@ const routes: Routes = [
         path: 'form-data-create',
         data: { title: '表单数据' },
         component: FormDataCreateComponent,
+      },
+      {
+        path: 'process-form',
+        data: { title: '流程表单' },
+        component: ProcessFormComponent,
       },
     ],
   },
