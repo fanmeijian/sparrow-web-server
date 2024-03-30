@@ -114,6 +114,5 @@
         }
       }
     }
-  },
-  "defaultProject": "sparrow-web-server"
+  }
 }
