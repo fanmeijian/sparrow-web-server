@@ -10,6 +10,8 @@ import Connect from './model/Connect';
 import Stage from './model/Stage';
 import TextElm from './model/TextElm';
 import { KeycloakService } from 'keycloak-angular';
+import { EmployeeService, RestApiServiceService } from '@sparrowmini/org-api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +20,25 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('stage') stage!: ElementRef<any>;
+  curUser: any;
 
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(
+    private keycloakService: KeycloakService,
+    private employeeService: EmployeeService,
+    private http: HttpClient,
+    private rest: RestApiServiceService
+  ) {
+    this.keycloakService.loadUserProfile().then((res) => {
+      this.curUser = res;
+      this.employeeService
+        .employeeByUsername(res.username)
+        .subscribe((a: any) => {
+          this.employeeService.employeeRoles(a.id).subscribe((b) => {
+            this.curUser.roles = b;
+          });
+        });
+    });
+  }
   ngAfterViewInit(): void {
     // console.log(this.stage);
     // // 初始化一个800 * 700的舞台
@@ -69,5 +88,14 @@ export class AppComponent implements AfterViewInit {
 
   logout() {
     this.keycloakService.logout();
+  }
+
+  onChange(e: any) {
+    console.log(e);
+    sessionStorage.setItem('organizationId', e.value);
+
+    this.rest
+      .create(JSON.stringify([{}]), 'cn.sparrowmini.server.TestCommon')
+      .subscribe((a: any) => {});
   }
 }

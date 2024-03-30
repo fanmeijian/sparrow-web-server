@@ -11,7 +11,7 @@ import {
 import { SparrowOrgModule } from '@sparrowmini/sparrow-org';
 import { SparrowPermissionModule } from '@sparrowmini/sparrow-permission';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { SparrowBreadcrumbModule } from '@sparrowmini/breadcrumb';
@@ -38,6 +38,8 @@ import {
   BASE_PATH as UserApi_BASE_PATH,
 } from '@sparrowmini/sparrow-keycloak-admin-api';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AuthInterceptor } from './auth.interceptor';
+import { SparrowFlowModule } from '@sparrowmini/sparrow-flow';
 
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
@@ -75,6 +77,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     FormApiModule,
     JbpmApiModule,
     UserApiModule,
+    SparrowFlowModule
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
@@ -93,6 +96,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerService,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  orgApiBase: 'http://localhost:8080',
+  orgApiBase: 'http://localhost:4421/org-service',
   ruleApiBase: 'http://localhost:8070/rule-service',
   keycloakUrl: 'https://keycloak.sportunione.cn',
   formApiBase: 'http://localhost:4421/sparrow-form-service',

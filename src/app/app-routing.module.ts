@@ -8,6 +8,7 @@ import {
   TaskInstancesComponent,
   ProcessFormComponent,
 } from '@sparrowmini/sparrow-bpm';
+import { FlowDesignComponent } from '@sparrowmini/sparrow-flow';
 import {
   FormCreateComponent,
   FormDataCreateComponent,
@@ -185,6 +186,11 @@ const routes: Routes = [
         component: ProcessFormComponent,
       },
     ],
+  },
+  {
+    path: 'flow-design',
+    data: { title: 'flow-design' },
+    component: FlowDesignComponent,
   },
 ];
 
