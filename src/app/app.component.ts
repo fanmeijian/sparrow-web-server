@@ -10,7 +10,7 @@ import Connect from './model/Connect';
 import Stage from './model/Stage';
 import TextElm from './model/TextElm';
 import { KeycloakService } from 'keycloak-angular';
-import { EmployeeService, RestApiServiceService } from '@sparrowmini/org-api';
+import { AuditlogService, EmployeeService, RestApiServiceService } from '@sparrowmini/org-api';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -26,7 +26,8 @@ export class AppComponent implements AfterViewInit {
     private keycloakService: KeycloakService,
     private employeeService: EmployeeService,
     private http: HttpClient,
-    private rest: RestApiServiceService
+    private rest: RestApiServiceService,
+    private logService: AuditlogService,
   ) {
     this.keycloakService.loadUserProfile().then((res) => {
       this.curUser = res;
@@ -38,8 +39,11 @@ export class AppComponent implements AfterViewInit {
           });
         });
     });
+
   }
   ngAfterViewInit(): void {
+
+
     // console.log(this.stage);
     // // 初始化一个800 * 700的舞台
     // let s2 = new Stage(this.stage.nativeElement);
@@ -83,7 +87,12 @@ export class AppComponent implements AfterViewInit {
     // let connect3 = new Connect({ x: 10, y: 350 }, { x: 150, y: 350 });
     // s2.add(connect3);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.keycloakService.getKeycloakInstance().realm)
+    this.logService.getAllRequestLogs().subscribe(res=>{
+      console.log(res)
+    })
+  }
   title = 'sparrow-web-server';
 
   logout() {

@@ -35,6 +35,9 @@ import {
   SprmodesComponent,
   PemgroupsComponent,
   DataPermissionsComponent,
+  RequestLogComponent,
+  DeleteLogComponent,
+  EditLogComponent,
 } from '@sparrowmini/sparrow-permission';
 import {
   RuleCreateComponent,
@@ -72,6 +75,28 @@ const routes: Routes = [
         path: 'data-permissions',
         data: { title: '权限管理' },
         component: DataPermissionsComponent,
+      },
+    ],
+  },
+  {
+    path: 'log',
+    data: { title: '系统管理' },
+    component: SparrowPermissionComponent,
+    children: [
+      {
+        path: 'request-logs',
+        data: { title: '请求日志' },
+        component: RequestLogComponent,
+      },
+      {
+        path: 'delete-logs',
+        data: { title: '删除日志' },
+        component: DeleteLogComponent,
+      },
+      {
+        path: 'edit-logs',
+        data: { title: '更新日志' },
+        component: EditLogComponent,
       },
     ],
   },
