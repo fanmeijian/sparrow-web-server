@@ -17,7 +17,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { SparrowBreadcrumbModule } from '@sparrowmini/breadcrumb';
 import { AngularMaterialModule } from './angular-material.module';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
 import { SparrowRuleModule } from '@sparrowmini/sparrow-rule';
 import {
   ApiModule as RuleApiModule,
@@ -40,6 +40,8 @@ import {
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AuthInterceptor } from './auth.interceptor';
 import { SparrowFlowModule } from '@sparrowmini/sparrow-flow';
+import { ErrorCatchingInterceptor } from './error-catching-interceptor';
+import { LoadingDialogComponent } from './common/loading-dialog/loading-dialog.component';
 
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
@@ -59,7 +61,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, ErrorDialogComponent],
+  declarations: [AppComponent, LoadingDialogComponent, ErrorDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,7 +79,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     FormApiModule,
     JbpmApiModule,
     UserApiModule,
-    SparrowFlowModule
+    SparrowFlowModule,
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
@@ -91,6 +93,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true,
     },
     {
       provide: ErrorHandler,

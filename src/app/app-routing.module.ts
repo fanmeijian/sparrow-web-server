@@ -38,6 +38,7 @@ import {
   RequestLogComponent,
   DeleteLogComponent,
   EditLogComponent,
+  UserListComponent,
 } from '@sparrowmini/sparrow-permission';
 import {
   RuleCreateComponent,
@@ -75,6 +76,11 @@ const routes: Routes = [
         path: 'data-permissions',
         data: { title: '权限管理' },
         component: DataPermissionsComponent,
+      },
+      {
+        path: 'users',
+        data: { title: '用户管理' },
+        component: UserListComponent,
       },
     ],
   },

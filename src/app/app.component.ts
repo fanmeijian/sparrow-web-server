@@ -88,10 +88,7 @@ export class AppComponent implements AfterViewInit {
     // s2.add(connect3);
   }
   ngOnInit(): void {
-    console.log(this.keycloakService.getKeycloakInstance().realm)
-    this.logService.getAllRequestLogs().subscribe(res=>{
-      console.log(res)
-    })
+
   }
   title = 'sparrow-web-server';
 

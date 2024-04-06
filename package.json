@@ -27,7 +27,7 @@
     "@sparrowmini/breadcrumb": "^0.0.2",
     "@sparrowmini/form-api": "^0.0.1",
     "@sparrowmini/jbpm-api": "^0.0.1",
-    "@sparrowmini/org-api": "^0.5.2",
+    "@sparrowmini/org-api": "^0.7.0",
     "@sparrowmini/permission-api": "^0.3.2",
     "@sparrowmini/rule-api": "^0.0.2",
     "@sparrowmini/sparrow-bpm": "^0.0.3",
