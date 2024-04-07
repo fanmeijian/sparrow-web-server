@@ -8,23 +8,34 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span>流程管理</span>
+  <span>工程管理系统</span>
   <span class="example-spacer"></span>
 
-  <div style="text-align: right">
+  <div style="text-align: right; width: 100%">
     <a
       [matMenuTriggerFor]="menu1"
       mat-icon-button
       style="font-size: 14px; cursor: pointer; padding: 0px"
     >
       <!-- {{ curUser?.username }} -->
-      <img class="avatar" src="{{ curUser?.attributes?.avatar[0] }}" />
+      <img
+        *ngIf="curUser?.attributes?.avatar"
+        class="avatar"
+        src="{{ curUser?.attributes?.avatar[0] }}"
+      />
     </a>
-    <mat-form-field>
-      <mat-label></mat-label>
-      <mat-select (selectionChange)="onChange($event)">
-        <mat-option *ngFor="let food of curUser?.roles" [value]="food.id.organizationRoleId.roleId">
-          {{food.id.organizationRoleId.roleId}}
+    <mat-form-field style="font-size: 12px; width: 120px">
+      <mat-label>当前身份</mat-label>
+      <mat-select
+        [(value)]="organizationRoleId"
+        (selectionChange)="onChange($event)"
+        placeholder="切换组织"
+      >
+        <mat-option
+          *ngFor="let food of curUser?.roles"
+          [value]="food.id.organizationRoleId"
+        >
+        {{ food.role.name }} ({{ food.org.name }})
         </mat-option>
       </mat-select>
     </mat-form-field>
