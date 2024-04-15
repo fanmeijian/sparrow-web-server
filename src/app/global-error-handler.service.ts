@@ -15,7 +15,7 @@ export class GlobalErrorHandlerService {
 
     this.zone.run(() => {
       // Check if it's an error from an HTTP response
-      if (error instanceof HttpErrorResponse) {
+      if (error instanceof HttpErrorResponse && !(error.status>=200 && error.status<300)) {
         // error = error?.rejection === undefined ? error : error?.rejection; // get the error object
         this.errorDialogService.openDialog(
           error || 'Undefined client error',

@@ -44,7 +44,8 @@ export class AppComponent implements AfterViewInit {
       this.employeeService
         .employeeByUsername(res.username)
         .subscribe((a: any) => {
-          this.employeeService
+          if(a){
+            this.employeeService
             .employeeRoles(a.id)
             .pipe(
               switchMap((m) =>
@@ -80,6 +81,8 @@ export class AppComponent implements AfterViewInit {
 
               // console.log(b[0].id.organizationRoleId);
             });
+          }
+
         });
     });
   }

@@ -39,6 +39,8 @@ import {
   DeleteLogComponent,
   EditLogComponent,
   UserListComponent,
+  FilesComponent,
+  MenuRouteGuard,
 } from '@sparrowmini/sparrow-permission';
 import {
   RuleCreateComponent,
@@ -51,7 +53,7 @@ const routes: Routes = [
     data: { title: '权限管理' },
     component: SparrowPermissionComponent,
     children: [
-      { path: 'menu', data: { title: '菜单管理' }, component: MenuComponent },
+      { path: 'menu', data: { title: '菜单管理' }, component: MenuComponent,canActivate:[MenuRouteGuard] },
       {
         path: 'sysrole',
         data: { title: '角色管理' },
@@ -81,6 +83,11 @@ const routes: Routes = [
         path: 'users',
         data: { title: '用户管理' },
         component: UserListComponent,
+      },
+      {
+        path: 'files',
+        data: { title: '文件管理' },
+        component: FilesComponent,
       },
     ],
   },

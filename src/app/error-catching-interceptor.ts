@@ -21,7 +21,10 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.loadingDialogService.openDialog();
+    if(!request.reportProgress){
+      this.loadingDialogService.openDialog();
+    }
+
     return next.handle(request).pipe(
       finalize(() => {
         this.loadingDialogService.hideDialog();
