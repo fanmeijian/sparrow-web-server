@@ -20,8 +20,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, map, switchMap, zip } from 'rxjs';
 
-import {BpmnPropertiesProviderModule, BpmnPropertiesPanelModule} from 'bpmn-js-properties-panel'
-import Modeler from 'bpmn-js/lib/Modeler'
+
 import { CamundaModdleDescriptor } from './model/CamundaModdleDescriptor';
 // import BpmnEditor from '@kogito-tooling/kie-editors-standalone/dist/bpmn'
 

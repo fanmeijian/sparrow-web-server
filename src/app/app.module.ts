@@ -22,10 +22,10 @@ import { AngularMaterialModule } from './angular-material.module';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
 // import { SparrowRuleModule } from '@sparrowmini/sparrow-rule';
-import {
-  ApiModule as RuleApiModule,
-  BASE_PATH as RuleApi_BASE_PATH,
-} from '@sparrowmini/rule-api';
+// import {
+//   ApiModule as RuleApiModule,
+//   BASE_PATH as RuleApi_BASE_PATH,
+// } from '@sparrowmini/rule-api';
 
 import {
   ApiModule as FormApiModule,
@@ -101,7 +101,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AngularMaterialModule,
     // SparrowTestLibModule,
     // SparrowRuleModule,
-    RuleApiModule,
+    // RuleApiModule,
     FormApiModule,
     JbpmApiModule,
     UserApiModule,
@@ -111,7 +111,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
-    { provide: RuleApi_BASE_PATH, useValue: environment.ruleApiBase },
+    // { provide: RuleApi_BASE_PATH, useValue: environment.ruleApiBase },
     { provide: FormApi_BASE_PATH, useValue: environment.formApiBase },
     { provide: JbpmApi_BASE_PATH, useValue: environment.bpmApiBase },
     { provide: UserApi_BASE_PATH, useValue: environment.userServiceApi },
