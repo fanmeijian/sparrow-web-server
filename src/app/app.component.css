@@ -81,3 +81,9 @@
   height: 40px;
   border-radius: 50%;
 }
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

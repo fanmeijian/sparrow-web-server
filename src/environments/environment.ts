@@ -6,10 +6,12 @@ export const environment = {
   production: false,
   orgApiBase: 'http://localhost:4421/org-service',
   ruleApiBase: 'http://localhost:8070/rule-service',
-  keycloakUrl: 'http://localhost:7980',
-  formApiBase: 'http://localhost:4421/sparrow-form-service',
+  // keycloakUrl: 'http://localhost:7980',
+  keycloakUrl: 'https://keycloak.sportunione.cn',
+  formApiBase: 'http://localhost:4421/org-service',
   bpmApiBase: 'http://localhost:8090/bpm/rest',
   userServiceApi: 'http://localhost:6080/keycloak-admin-service',
+  flowApiBase: 'http://localhost:4421/org-service',
   realm: 'liyun-dev',
 };
 

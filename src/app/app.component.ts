@@ -20,6 +20,11 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, map, switchMap, zip } from 'rxjs';
 
+import {BpmnPropertiesProviderModule, BpmnPropertiesPanelModule} from 'bpmn-js-properties-panel'
+import Modeler from 'bpmn-js/lib/Modeler'
+import { CamundaModdleDescriptor } from './model/CamundaModdleDescriptor';
+// import BpmnEditor from '@kogito-tooling/kie-editors-standalone/dist/bpmn'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,6 +34,10 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('stage') stage!: ElementRef<any>;
   curUser: any;
   organizationRoleId: any;
+
+  modeler!: any;
+
+
 
   constructor(
     private keycloakService: KeycloakService,
@@ -86,8 +95,14 @@ export class AppComponent implements AfterViewInit {
         });
     });
   }
-  ngAfterViewInit(): void {}
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+
+  }
+
+
+  ngOnInit(): void {
+
+  }
   title = 'sparrow-web-server';
 
   logout() {

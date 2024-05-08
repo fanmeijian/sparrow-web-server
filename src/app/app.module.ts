@@ -21,7 +21,7 @@ import { SparrowBreadcrumbModule } from '@sparrowmini/breadcrumb';
 import { AngularMaterialModule } from './angular-material.module';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
-import { SparrowRuleModule } from '@sparrowmini/sparrow-rule';
+// import { SparrowRuleModule } from '@sparrowmini/sparrow-rule';
 import {
   ApiModule as RuleApiModule,
   BASE_PATH as RuleApi_BASE_PATH,
@@ -37,9 +37,20 @@ import {
 } from '@sparrowmini/jbpm-api';
 
 import {
+  ApiModule as FlowApiModule,
+  BASE_PATH as FlowApi_BASE_PATH,
+} from '@sparrowmini/flow-api';
+
+import {
   ApiModule as UserApiModule,
   BASE_PATH as UserApi_BASE_PATH,
 } from '@sparrowmini/sparrow-keycloak-admin-api';
+
+import {
+  ApiModule as CamundaApiModule,
+  BASE_PATH as CamundaApi_BASE_PATH,
+} from '@sparrowmini/camunda-api';
+
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AuthInterceptor } from './auth.interceptor';
 import { SparrowFlowModule } from '@sparrowmini/sparrow-flow';
@@ -57,9 +68,21 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'sparrow-web-server',
       },
       initOptions: {
-        onLoad: 'login-required',
+        onLoad: 'check-sso',
       },
       bearerExcludedUrls: ['/assets'],
+    }).then(res=>{
+      console.log(res)
+      if(res){
+        keycloak.loadUserProfile().then(res=>{
+          sessionStorage.setItem('username',res.username)
+          sessionStorage.setItem("user", JSON.stringify(res))
+
+        })
+      }else{
+        keycloak.login({scope: 'openid email profile microprofile-jwt'})
+
+      }
     });
 }
 
@@ -77,12 +100,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
     SparrowBreadcrumbModule,
     AngularMaterialModule,
     // SparrowTestLibModule,
-    SparrowRuleModule,
+    // SparrowRuleModule,
     RuleApiModule,
     FormApiModule,
     JbpmApiModule,
     UserApiModule,
     SparrowFlowModule,
+    FlowApiModule,
+    CamundaApiModule,
   ],
   providers: [
     { provide: OrgApi_BASE_PATH, useValue: environment.orgApiBase },
@@ -90,6 +115,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     { provide: FormApi_BASE_PATH, useValue: environment.formApiBase },
     { provide: JbpmApi_BASE_PATH, useValue: environment.bpmApiBase },
     { provide: UserApi_BASE_PATH, useValue: environment.userServiceApi },
+    { provide: FlowApi_BASE_PATH, useValue: environment.flowApiBase },
+    { provide: CamundaApi_BASE_PATH, useValue: environment.flowApiBase + '/engine-rest/engine/default'},
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: APP_INITIALIZER,

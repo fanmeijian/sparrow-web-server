@@ -45,9 +45,16 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/@logicflow/core/dist/style/index.css",
               "node_modules/@logicflow/extension/lib/style/index.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bpmn-js/dist/assets/diagram-js.css",
+              "node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn.css",
+              "node_modules/@bpmn-io/properties-panel/dist/assets/properties-panel.css"
+
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bpmn-js-properties-panel/dist/index.js",
+              "node_modules/@kogito-tooling/kie-editors-standalone/dist/bpmn/index.js"
+            ],
             "preserveSymlinks": true
           },
           "configurations": {

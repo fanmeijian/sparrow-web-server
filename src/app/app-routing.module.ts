@@ -2,12 +2,24 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   FormDesignComponent,
+  MyProcessInstancesComponent,
   ProcessDefinitionsComponent,
-  ProcessInstacesComponent,
-  SparrowBpmComponent,
-  TaskInstancesComponent,
   ProcessFormComponent,
+  ProcessInstacesComponent,
+  ProcessPublishedComponent,
+  SparrowBpmComponent,
+  TaskDoneComponent,
+  TaskInstancesComponent,
+  TaskTodoComponent,
 } from '@sparrowmini/sparrow-bpm';
+// import {
+//   FormDesignComponent,
+//   ProcessDefinitionsComponent,
+//   ProcessInstacesComponent,
+//   SparrowBpmComponent,
+//   TaskInstancesComponent,
+//   ProcessFormComponent,
+// } from '@sparrowmini/sparrow-bpm';
 import { FlowDesignComponent } from '@sparrowmini/sparrow-flow';
 import {
   FormCreateComponent,
@@ -41,11 +53,16 @@ import {
   UserListComponent,
   FilesComponent,
   MenuRouteGuard,
+  PageElementsComponent,
+  DictsComponent,
+  ReportTemplatesComponent,
+  ViewReportComponent
 } from '@sparrowmini/sparrow-permission';
-import {
-  RuleCreateComponent,
-  RuleTemplatesComponent,
-} from '@sparrowmini/sparrow-rule';
+
+// import {
+//   RuleCreateComponent,
+//   RuleTemplatesComponent,
+// } from '@sparrowmini/sparrow-rule';
 
 const routes: Routes = [
   {
@@ -53,7 +70,12 @@ const routes: Routes = [
     data: { title: '权限管理' },
     component: SparrowPermissionComponent,
     children: [
-      { path: 'menu', data: { title: '菜单管理' }, component: MenuComponent,canActivate:[MenuRouteGuard] },
+      {
+        path: 'menu',
+        data: { title: '菜单管理' },
+        component: MenuComponent,
+        canActivate: [MenuRouteGuard],
+      },
       {
         path: 'sysrole',
         data: { title: '角色管理' },
@@ -89,11 +111,16 @@ const routes: Routes = [
         data: { title: '文件管理' },
         component: FilesComponent,
       },
+      {
+        path: 'page-elements',
+        data: { title: '页面元素管理' },
+        component: PageElementsComponent,
+      },
     ],
   },
   {
     path: 'log',
-    data: { title: '系统管理' },
+    data: { title: '审计日志' },
     component: SparrowPermissionComponent,
     children: [
       {
@@ -113,7 +140,19 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'builder', component: FormDesignComponent },
+  {
+    path: 'setting',
+    data: { title: '系统配置' },
+    component: SparrowPermissionComponent,
+    children: [
+      {
+        path: 'dicts',
+        data: { title: '数据字典' },
+        component: DictsComponent,
+      },
+    ],
+  },
+  // { path: 'builder', component: FormDesignComponent },
   { path: 'my-forms', component: MyFormListComponent },
   { path: 'my-form-datas', component: MyFormDataListComponent },
   {
@@ -174,33 +213,53 @@ const routes: Routes = [
         data: { title: '任务列表' },
         component: TaskInstancesComponent,
       },
-    ],
-  },
-  {
-    path: 'rule',
-    data: { title: '规则管理' },
-    component: SparrowOrgComponent,
-    children: [
       {
-        path: 'templates',
-        data: { title: '规则模版列表' },
-        component: RuleTemplatesComponent,
+        path: 'form-design',
+        data: { title: '表单设计' },
+        component: FormDesignComponent,
       },
       {
-        path: 'rule-create',
-        data: { title: '新建规则' },
-        component: RuleCreateComponent,
+        path: 'process-form',
+        data: { title: '启动流程' },
+        component: ProcessFormComponent,
+      },
+      {
+        path: 'my-flow',
+        data: { title: '我发起的' },
+        component: MyProcessInstancesComponent,
+      },
+      {
+        path: 'start-flow',
+        data: { title: '发起流程' },
+        component: ProcessPublishedComponent,
       },
     ],
   },
+  // {
+  //   path: 'rule',
+  //   data: { title: '规则管理' },
+  //   component: SparrowOrgComponent,
+  //   children: [
+  //     {
+  //       path: 'templates',
+  //       data: { title: '规则模版列表' },
+  //       component: RuleTemplatesComponent,
+  //     },
+  //     {
+  //       path: 'rule-create',
+  //       data: { title: '新建规则' },
+  //       component: RuleCreateComponent,
+  //     },
+  //   ],
+  // },
   {
     path: 'form',
     data: { title: '表单管理' },
     component: SparrowFormComponent,
     children: [
       {
-        path: 'form-datas',
-        data: { title: '数据' },
+        path: 'form-data-list',
+        data: { title: '表单数据' },
         component: FormDataListComponent,
       },
       {
@@ -219,16 +278,50 @@ const routes: Routes = [
         component: FormDataCreateComponent,
       },
       {
-        path: 'process-form',
-        data: { title: '流程表单' },
-        component: ProcessFormComponent,
+        path: 'form-data-view',
+        data: { title: '表单详情' },
+        component: FormDataViewComponent,
+      },
+      // {
+      //   path: 'process-form',
+      //   data: { title: '流程表单' },
+      //   component: ProcessFormComponent,
+      // },
+    ],
+  },
+  {
+    path: 'task',
+    data: { title: '任务中心' },
+    component: SparrowBpmComponent,
+    children: [
+      {
+        path: 'todo',
+        data: { title: '待办任务' },
+        component: TaskTodoComponent,
+      },
+      {
+        path: 'done',
+        data: { title: '已办任务' },
+        component: TaskDoneComponent,
       },
     ],
   },
   {
-    path: 'flow-design',
-    data: { title: 'flow-design' },
-    component: FlowDesignComponent,
+    path: 'report',
+    data: { title: '报表分析' },
+    component: SparrowPermissionComponent,
+    children: [
+      {
+        path: 'view-report',
+        data: { title: '报表详情' },
+        component: ViewReportComponent,
+      },
+      {
+        path: 'templates',
+        data: { title: '模版列表' },
+        component: ReportTemplatesComponent,
+      },
+    ],
   },
 ];
 
