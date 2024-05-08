@@ -10,6 +10,7 @@ export const environment = {
   formApiBase: 'http://localhost:4421/sparrow-form-service',
   bpmApiBase: 'http://localhost:8090/bpm/rest',
   userServiceApi: 'http://localhost:6080/keycloak-admin-service',
+  flowApiBase: 'http://localhost:4421/org-service',
   realm: 'liyun-dev',
 };
 
