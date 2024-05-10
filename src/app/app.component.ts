@@ -83,9 +83,9 @@ export class AppComponent implements AfterViewInit {
               this.organizationRoleId = b.filter(
                 (f) =>
                   f.id.organizationRoleId.organizationId ===
-                    orgRoleId.organizationId &&
-                  f.id.organizationRoleId.roleId === orgRoleId.roleId
-              )[0].id.organizationRoleId;
+                    orgRoleId?.organizationId &&
+                  f.id.organizationRoleId.roleId === orgRoleId?.roleId
+              )[0]?.id.organizationRoleId;
 
               // console.log(b[0].id.organizationRoleId);
             });

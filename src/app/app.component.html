@@ -21,23 +21,31 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span>荔云组织权限管理系统</span>
+  <span>荔云ESG</span>
   <span class="example-spacer"></span>
 
   <div style="text-align: right; width: 100%">
+    <lib-employee-role-select></lib-employee-role-select>
+
     <a
       [matMenuTriggerFor]="menu1"
       mat-icon-button
-      style="font-size: 14px; cursor: pointer; padding: 0px"
+      style="font-size: 14px; cursor: pointer; padding:10px"
     >
-      <!-- {{ curUser?.username }} -->
       <img
         *ngIf="curUser?.attributes?.avatar"
         class="avatar"
         src="{{ curUser?.attributes?.avatar[0] }}"
+        alt="注销"
+      />
+      <img
+        *ngIf="!curUser?.attributes?.avatar"
+        class="avatar"
+        src="../assets/participant_img_default_man.png"
+        alt="注销"
       />
     </a>
-    <mat-form-field style="font-size: 12px; width: 120px">
+    <!-- <mat-form-field style="font-size: 12px; width: 120px">
       <mat-label>当前身份</mat-label>
       <mat-select
         [(value)]="organizationRoleId"
@@ -51,7 +59,7 @@
         {{ food.role.name }} ({{ food.org.name }})
         </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-menu #menu1="matMenu">
       <button mat-menu-item (click)="logout()" color="accent">注销</button>
     </mat-menu>

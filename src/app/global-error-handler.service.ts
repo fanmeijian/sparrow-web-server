@@ -18,7 +18,7 @@ export class GlobalErrorHandlerService {
       if (error instanceof HttpErrorResponse && !(error.status>=200 && error.status<300)) {
         // error = error?.rejection === undefined ? error : error?.rejection; // get the error object
         this.errorDialogService.openDialog(
-          error || 'Undefined client error',
+          (typeof error.error === 'object'? error.error.msg: error.error) || 'Undefined client error',
           error?.status
         );
       }
