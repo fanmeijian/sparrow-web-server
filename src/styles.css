@@ -30,6 +30,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   word-wrap: break-word;
   padding: 2px;
   word-break: break-word;
+  flex-wrap: wrap;
 
   -ms-hyphens: auto;
   -moz-hyphens: auto;
