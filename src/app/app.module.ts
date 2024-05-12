@@ -10,7 +10,6 @@ import {
 } from '@sparrowmini/org-api';
 import { SparrowOrgModule } from '@sparrowmini/sparrow-org';
 import {
-  MenuRouteGuard,
   SparrowPermissionModule,
 } from '@sparrowmini/sparrow-permission';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -134,7 +133,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useClass: GlobalErrorHandlerService,
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: MenuRouteGuard },
   ],
   bootstrap: [AppComponent],
 })

@@ -52,7 +52,6 @@ import {
   EditLogComponent,
   UserListComponent,
   FilesComponent,
-  MenuRouteGuard,
   PageElementsComponent,
   DictsComponent,
   ReportTemplatesComponent,
@@ -74,7 +73,6 @@ const routes: Routes = [
         path: 'menu',
         data: { title: '菜单管理' },
         component: MenuComponent,
-        canActivate: [MenuRouteGuard],
       },
       {
         path: 'sysrole',
