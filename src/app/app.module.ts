@@ -67,22 +67,23 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'sparrow-web-server',
       },
       initOptions: {
-        onLoad: 'check-sso',
+        onLoad: 'login-required',
       },
       bearerExcludedUrls: ['/assets'],
-    }).then(res=>{
-      console.log(res)
-      if(res){
-        keycloak.loadUserProfile().then(res=>{
-          sessionStorage.setItem('username',res.username)
-          sessionStorage.setItem("user", JSON.stringify(res))
+    })
+    // .then(res=>{
+    //   console.log(res)
+    //   if(res){
+    //     keycloak.loadUserProfile().then(res=>{
+    //       sessionStorage.setItem('username',res.username)
+    //       sessionStorage.setItem("user", JSON.stringify(res))
 
-        })
-      }else{
-        keycloak.login({scope: 'openid email profile microprofile-jwt'})
+    //     })
+    //   }else{
+    //     keycloak.login({scope: 'openid email profile microprofile-jwt'})
 
-      }
-    });
+    //   }
+    // });
 }
 
 @NgModule({

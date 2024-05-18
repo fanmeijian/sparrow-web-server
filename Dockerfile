@@ -1,0 +1,36 @@
+#for demo using local docker, no need to compile project
+FROM nginx
+COPY dist/* /usr/share/nginx/html
+
+
+#for production will replace varatiables
+
+# FROM node:alpine
+
+# ARG BACKEND_API_PORT
+# ARG ORG_API_BASE
+# ARG RULE_API_BASE
+# ARG KEYCLOAK_API_BASE
+# ARG FORM_API_BASE
+# ARG BPM_API_BASE
+# ARG USER_API_BASE
+# ARG FLOW_API_BASE
+# ARG REALM
+
+
+# WORKDIR /app
+# COPY src /app
+# COPY *.* /app
+
+# ARG BACKEND_API_PORT=$BACKEND_API_PORT
+# ARG ORG_API_BASE=$ORG_API_BASE
+# ARG RULE_API_BASE=$RULE_API_BASE
+# ARG KEYCLOAK_API_BASE=$KEYCLOAK_API_BASE
+# ARG FORM_API_BASE=$FORM_API_BASE
+# ARG BPM_API_BASE=$BPM_API_BASE
+# ARG USER_API_BASE=$USER_API_BASE
+# ARG FLOW_API_BASE=$FLOW_API_BASE
+# ARG REALM=$REALM
+
+# RUN npm install
+# RUN npm run build --prod
