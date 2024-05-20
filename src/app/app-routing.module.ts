@@ -7,6 +7,7 @@ import {
   ProcessFormComponent,
   ProcessInstacesComponent,
   ProcessPublishedComponent,
+  QueryListComponent,
   SparrowBpmComponent,
   TaskDoneComponent,
   TaskInstancesComponent,
@@ -231,6 +232,11 @@ const routes: Routes = [
         data: { title: '发起流程' },
         component: ProcessPublishedComponent,
       },
+      {
+        path: 'query-list',
+        data: { title: '自定义查询'},
+        component: QueryListComponent
+      }
     ],
   },
   // {
