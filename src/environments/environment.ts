@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  orgApiBase: 'http://localhost:4421/org-service',
-  ruleApiBase: 'http://localhost:8070/rule-service',
+  orgApiBase: 'http://192.168.1.25:4421/org-service',
+  ruleApiBase: 'http://192.168.1.25:8070/rule-service',
   keycloakUrl: 'https://keycloak.sportunione.cn',
-  formApiBase: 'http://localhost:4421/org-service',
-  bpmApiBase: 'http://localhost:8090/bpm/rest',
-  userServiceApi: 'http://localhost:6080/keycloak-admin-service',
-  flowApiBase: 'http://localhost:4421/org-service',
+  formApiBase: 'http://192.168.1.25:4421/org-service',
+  bpmApiBase: 'http://192.168.1.25:4421/org-service/rest',
+  userServiceApi: 'http://192.168.1.25:6080/keycloak-admin-service',
+  flowApiBase: 'http://192.168.1.25:4421/org-service',
   realm: 'liyun-dev',
 };
 

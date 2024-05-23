@@ -41,7 +41,7 @@
     "@sparrowmini/sparrow-form": "^0.1.1",
     "@sparrowmini/sparrow-keycloak-admin-api": "^0.0.2",
     "@sparrowmini/sparrow-org": "^0.1.3",
-    "@sparrowmini/sparrow-permission": "^0.5.7",
+    "@sparrowmini/sparrow-permission": "file:../sparrow-angular-lib/dist/sparrow-permission",
     "formiojs": "^4.18.2",
     "i": "^0.3.7",
     "json-diff-ts": "^2.2.1",
