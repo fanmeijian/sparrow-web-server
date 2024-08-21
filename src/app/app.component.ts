@@ -22,7 +22,11 @@ import { combineLatest, map, switchMap, zip } from 'rxjs';
 
 
 import { CamundaModdleDescriptor } from './model/CamundaModdleDescriptor';
+import { environment } from 'src/environments/environment';
 // import BpmnEditor from '@kogito-tooling/kie-editors-standalone/dist/bpmn'
+import { Formio, FormioAppConfig } from '@formio/angular';
+import { CosFileService } from '@sparrowmini/form-api';
+import { MyStorageProvider } from './services/MyStorageProvider';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +49,8 @@ export class AppComponent implements AfterViewInit {
     private rest: RestApiServiceService,
     private logService: AuditlogService,
     private orgService: OrganizationService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    // public config: FormioAppConfig,
   ) {
     this.keycloakService.loadUserProfile().then((res) => {
       this.curUser = res;
@@ -95,12 +100,17 @@ export class AppComponent implements AfterViewInit {
     });
   }
   ngAfterViewInit(): void {
+    // Formio.providers.storage = { CosFileService };
+    Formio.providers = {
+      storage: { MyStorageProvider }
+    }
+    console.log('====', Formio.providers)
 
   }
 
 
   ngOnInit(): void {
-
+    // Formio.setBaseUrl('asdf')
   }
   title = 'sparrow-web-server';
 

@@ -29,6 +29,7 @@ import { ErrorDialogComponent } from './common/error-dialog/error-dialog.compone
 import {
   ApiModule as FormApiModule,
   BASE_PATH as FormApi_BASE_PATH,
+  COS_CONFIG as COS_CONFIG,
 } from '@sparrowmini/form-api';
 import {
   ApiModule as JbpmApiModule,
@@ -55,6 +56,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { SparrowFlowModule } from '@sparrowmini/sparrow-flow';
 import { ErrorCatchingInterceptor } from './error-catching-interceptor';
 import { LoadingDialogComponent } from './common/loading-dialog/loading-dialog.component';
+import { FormioAppConfig } from '@formio/angular';
 
 // import {SparrowTestLibModule } from 'sparrow-test-lib'
 
@@ -134,6 +136,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useClass: GlobalErrorHandlerService,
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: COS_CONFIG, useValue: {bucket: 'sportunione-1252583813',region: 'ap-guangzhou'}},
+    {provide: FormioAppConfig, useValue: {appUrl: "http://localhost:4200/asd",apiUrl: "http://localhost:4200/sd"}}
   ],
   bootstrap: [AppComponent],
 })
