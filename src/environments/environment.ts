@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  orgApiBase: 'http://localhost:8300/toupiao-service',
+  orgApiBase: 'http://localhost:8580/contract-service',
   ruleApiBase: 'http://localhost:8070/rule-service',
   keycloakUrl: 'https://keycloak.linkair-tech.cn',
-  formApiBase: 'http://localhost:8300/toupiao-service',
-  bpmApiBase: 'http://localhost:4421/org-service/rest',
+  formApiBase: 'http://localhost:8580/contract-service',
+  bpmApiBase: 'http://localhost:8580/contract-service/rest',
   userServiceApi: 'http://localhost:6080/keycloak-admin-service',
-  flowApiBase: 'http://localhost:8300/toupiao-service',
-  realm: 'liyun-prd',
+  flowApiBase: 'http://localhost:8580/contract-service',
+  realm: 'liyun-dev',
 };
 
 /*
