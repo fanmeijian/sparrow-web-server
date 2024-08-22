@@ -56,7 +56,8 @@ import {
   PageElementsComponent,
   DictsComponent,
   ReportTemplatesComponent,
-  ViewReportComponent
+  ViewReportComponent,
+  DataPermissionNewComponent
 } from '@sparrowmini/sparrow-permission';
 
 // import {
@@ -97,8 +98,13 @@ const routes: Routes = [
       },
       {
         path: 'data-permissions',
-        data: { title: '权限管理' },
+        data: { title: '数据权限' },
         component: DataPermissionsComponent,
+      },
+      {
+        path: 'data-permission-new',
+        data: { title: '新增数据权限' },
+        component: DataPermissionNewComponent,
       },
       {
         path: 'users',
