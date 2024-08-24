@@ -136,7 +136,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useClass: GlobalErrorHandlerService,
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: COS_CONFIG, useValue: {bucket: 'sportunione-1252583813',region: 'ap-guangzhou'}},
+    { provide: COS_CONFIG, useValue: {bucket: 'attachment-1252583813',region: 'ap-guangzhou', rootPath: 'contract/'}},
     {provide: FormioAppConfig, useValue: {appUrl: "http://localhost:4200/asd",apiUrl: "http://localhost:4200/sd"}}
   ],
   bootstrap: [AppComponent],
